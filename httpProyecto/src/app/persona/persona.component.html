@@ -1,0 +1,33 @@
+<h1>Prueba del modulo http</h1>
+
+<div class="container">
+  <div class="row">
+     <div class="col-8">
+       <table>
+         <thead>
+           <th>Id</th>
+           <th>Nombre</th>
+           <th>Apellido</th>
+           <th>Edad</th>
+         </thead>
+         <tbody>
+           <tr *ngFor = "let item of personas"></tr>
+           <td>{{item._id}}</td>
+           <td>{{item.Nombre}}</td>
+           <td>{{item.Apellido}}</td>
+           <td>{{item.Edad}}</td>
+           <td>
+             <button (click)="eliminarPersona(item_id)" class="btn btn-primary">Eliminar</button>
+           </td>
+         </tbody>
+       </table>
+     </div>
+     <div class="col-4">
+       <div class="form-group">
+         <label for="controlNombre"></label>
+         <input type="text" class="from-control" placeholder="Nombre de la persona">
+
+       </div>
+     </div>
+  </div>
+</div>
