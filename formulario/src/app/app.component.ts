@@ -13,7 +13,7 @@ export class AppComponent {
     this.formulario = this.fromBuilder.group({
       nombre: ['nombre por defecto', Validators.required],
       apellido: ['nombre por defecto', Validators.required],
-      email: ['por defecto', [Validators.required, Validators.pattern("[^ @]*@[^ @]*")]]
+      email: ['ejemplo@correo.com', [Validators.required, Validators.pattern("[^ @]*@[^ @]*")]]
     })
   }
   
