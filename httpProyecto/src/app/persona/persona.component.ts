@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PersonaService } from '../servicio/persona.service';
 
 @Component({
   selector: 'app-persona',
@@ -6,10 +7,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent implements OnInit {
+  agregarPersonaRegistro: any = { Nombre: '', Apellido: '', Edad: '' }
+  personas: any;
 
-  constructor() { }
+  constructor(private personaService:PersonaService) { 
+    this.obtenerPersonas();
+  }
+  
 
   ngOnInit() {
+  }
+  obtenerPersonas(){
+    this.personaService.obtenerTodasLasPersonas().subscribe(resultado =>{
+      this.personas = resultado.personas;
+    },
+    error => {
+      console.log(JSON.stringify(error));
+
+    });
+  }
+
+  eliminarPersona(identificador){
+    console.log('evento eliminar');
+    this.personaService.eliminarPersona(identificador).subscribe(resultado =>{
+      this.obtenerPersonas();
+    },
+    error =>{
+      console.log(JSON.stringify(error));
+    });
+
+  }
+
+  agregarPersona(){
+    console.log('evento agregar');
+    this.personaService.agregarPersona(this.agregarPersonaRegistro).subscribe(resultado =>{
+      this.obtenerPersonas();
+    },
+    error =>{
+      console.log(JSON.stringify(error));
+    })
+
   }
 
 }
